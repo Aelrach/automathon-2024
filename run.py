@@ -251,7 +251,7 @@ class DeepfakeDetector(nn.Module):
         print(nb_frames)
         # Ensure that the input tensor has the correct shape [batch_size, nb_frames, 3, h, w]
         x = x.view(batch_size, nb_frames, 3, h, w)
-        
+        print(nb_frames)
         # Pass each frame through ResNet50
         y = []
         for i in range(nb_frames):
