@@ -226,6 +226,7 @@ class DeepfakeDetector(nn.Module):
     def __init__(self, nb_frames=10):
         super().__init__()
         self.auto_encoder = torchvision.models.resnet50(weights='IMAGENET1K_V1', progress=True)
+        self.auto_encoder.eval()
         # Freeze the parameters of ResNet50
         for param in self.auto_encoder.parameters():
             param.requires_grad = False
@@ -254,14 +255,21 @@ class DeepfakeDetector(nn.Module):
         #print(nb_frames)
         # Pass each frame through ResNet50
         y = []
-        for i in range(nb_frames):
-            frame = x[:, i, :, :, :]
-            #print(frame.size())
-            resnet_output = self.auto_encoder.layer4(self.auto_encoder.layer3(self.auto_encoder.layer2(self.auto_encoder.layer1(self.auto_encoder.maxpool(self.auto_encoder.relu(self.auto_encoder.bn1(self.auto_encoder.conv1(frame))))))))
-            resnet_output = self.pool(resnet_output)
-            resnet_output = resnet_output.view(resnet_output.size(0), -1)  # Flatten the output
-            #print("ResNet50 output size per frame:", resnet_output.size()) # [batch_size, 2048]
-            y.append(resnet_output)
+        
+        frame = x[:, 0, :, :, :]
+        #print(frame.size())
+        r_out = self.auto_encoder.conv1(frame)
+        r_out = self.auto_encoder.bn1(r_out)
+        r_out = self.auto_encoder.relu(r_out)
+        r_out = self.auto_encoder.maxpool(r_out)
+        r_out = self.auto_encoder.layer1(r_out)
+        r_out = self.auto_encoder.layer2(r_out)
+        r_out = self.auto_encoder.layer3(r_out)
+        resnet_output = self.auto_encoder.layer4(r_out)
+        resnet_output = self.pool(resnet_output)
+        resnet_output = resnet_output.view(resnet_output.size(0), -1)  # Flatten the output
+        #print("ResNet50 output size per frame:", resnet_output.size()) # [batch_size, 2048]
+        y.append(resnet_output)
         
         # Convert list of tensors to a tensor
         
