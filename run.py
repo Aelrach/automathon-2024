@@ -251,6 +251,7 @@ class DeepfakeDetector(nn.Module):
             frame = x[:, i, :, :, :]
             resnet_output = self.auto_encoder.layer4(self.auto_encoder.layer3(self.auto_encoder.layer2(self.auto_encoder.layer1(self.auto_encoder.maxpool(self.auto_encoder.relu(self.auto_encoder.bn1(self.auto_encoder.conv1(frame))))))))
             resnet_output = resnet_output.view(batch_size, -1)  # Flatten the output
+            print("ResNet50 output size per frame:", resnet_output.size())
             y.append(resnet_output)
         
         # Convert list of tensors to a tensor
