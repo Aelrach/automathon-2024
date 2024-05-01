@@ -237,7 +237,7 @@ class DeepfakeDetector(nn.Module):
         #Pooling layer
         self.pool = nn.AdaptiveAvgPool2d((1,1))
         # Dense layers
-        self.dense1 = nn.Linear(nb_frames*nhidden, 128)
+        self.dense1 = nn.Linear(1*nhidden, 128)
         self.dense2 = nn.Linear(128, 128)
         self.dense3 = nn.Linear(128, 2)
         # Sigmoid activation function
