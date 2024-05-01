@@ -231,7 +231,7 @@ class DeepfakeDetector(nn.Module):
             param.requires_grad = False
         
         # LSTM layer
-        self.lstm = nn.LSTM(input_size=100352, hidden_size=256, num_layers=1, batch_first=True)
+        self.lstm = nn.LSTM(input_size=2048, hidden_size=256, num_layers=1, batch_first=True)
         
         # Dense layers
         self.dense1 = nn.Linear(nb_frames*256, 512)
@@ -250,7 +250,7 @@ class DeepfakeDetector(nn.Module):
         for i in range(nb_frames):
             frame = x[:, i, :, :, :]
             resnet_output = self.auto_encoder.layer4(self.auto_encoder.layer3(self.auto_encoder.layer2(self.auto_encoder.layer1(self.auto_encoder.maxpool(self.auto_encoder.relu(self.auto_encoder.bn1(self.auto_encoder.conv1(frame))))))))
-            resnet_output = resnet_output.view(batch_size, -1)  # Flatten the output
+            #resnet_output = resnet_output.view(batch_size, -1)  # Flatten the output
             print("ResNet50 output size per frame:", resnet_output.size())
             y.append(resnet_output)
         
