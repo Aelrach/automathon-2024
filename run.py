@@ -236,8 +236,8 @@ class DeepfakeDetector(nn.Module):
         self.dense2 = nn.Linear(512, 128)
         self.dense3 = nn.Linear(128, 2)
         # Sigmoid activation function
-        self.relu = nn.functional.relu()
-        self.softmax = nn.Softmax()
+        self.relu = nn.ReLU()
+        self.softmax = nn.Softmax(dim=1)
 
     def forward(self, x):
         x = smart_resize(x, 224)
@@ -261,11 +261,9 @@ class DeepfakeDetector(nn.Module):
         lstm_output = lstm_output.contiguous().view(batch_size, -1)
         
         # Pass the output through the dense layers
-        y = self.dense1(lstm_output)
-        y = self.relu(y)
-        y = self.dense2(y)
-        y = self.relu(y)
-        y = self.dense3(y)
+        y = self.relu(self.dense1(lstm_output))
+        y = self.relu(self.dense2(y))
+        y = self.relu(self.dense3(y))
         y = self.softmax(y)
         return y
 
