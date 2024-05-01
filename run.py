@@ -231,7 +231,7 @@ class DeepfakeDetector(nn.Module):
             param.requires_grad = False
         nhidden = 50
         # LSTM layer
-        self.lstm = nn.LSTM(input_size=100352, hidden_size=nhidden, num_layers=1, batch_first=True)
+        self.lstm = nn.LSTM(input_size=2048, hidden_size=nhidden, num_layers=1, batch_first=True)
 
         #Pooling layer
         self.pool = nn.AdaptiveAvgPool2d((1,1))
