@@ -248,7 +248,7 @@ class DeepfakeDetector(nn.Module):
         x = smart_resize(x, 224)
         print(x.size())
         batch_size, c, nb_frames, h, w = x.size()
-
+        print(nb_frames)
         # Ensure that the input tensor has the correct shape [batch_size, nb_frames, 3, h, w]
         x = x.view(batch_size, nb_frames, 3, h, w)
         
