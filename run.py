@@ -223,13 +223,44 @@ experimental_dataset = VideoDataset(dataset_dir, dataset_choice="experimental", 
 class DeepfakeDetector(nn.Module):
     def __init__(self, nb_frames=10):
         super().__init__()
-        self.dense = nn.Linear(nb_frames*3*256*256,1)
-        self.flat = nn.Flatten()
+        self.auto_encoder = torchvision.models.vgg19_bn(weights=VGG19_BN_Weights, pretrained=True, progress=True)
+        # Freeze the parameters of VGG19_bn
+        for param in self.auto_encoder.parameters():
+            param.requires_grad = False
+        
+        # LSTM layer
+        self.lstm = nn.LSTM(input_size=25088, hidden_size=256, num_layers=1, batch_first=True)
+        
+        # Dense layers
+        self.dense1 = nn.Linear(nb_frames*256, 512)
+        self.dense2 = nn.Linear(512, 1)
+        
+        # Sigmoid activation function
         self.sigmoid = nn.Sigmoid()
 
     def forward(self, x):
-        y = self.flat(x)
-        y = self.dense(y)
+        batch_size, nb_frames, c, h, w = x.size()
+        
+        # Pass each frame through VGG19_bn
+        y = []
+        for i in range(nb_frames):
+            frame = x[:, i, :, :, :]
+            vgg_output = self.vgg19_bn.features(frame)
+            vgg_output = vgg_output.view(batch_size, -1)  # Flatten the output
+            y.append(vgg_output)
+        
+        # Convert list of tensors to a tensor
+        y = torch.stack(y, dim=1)
+        
+        # Pass the output through LSTM
+        lstm_output, (hn, cn) = self.lstm(y)
+        
+        # Flatten the output for the dense layers
+        lstm_output = lstm_output.contiguous().view(batch_size, -1)
+        
+        # Pass the output through the dense layers
+        y = self.dense1(lstm_output)
+        y = self.dense2(y)
         y = self.sigmoid(y)
         return y
 
