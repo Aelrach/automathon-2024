@@ -244,35 +244,35 @@ class DeepfakeDetector(nn.Module):
         self.softmax = nn.Softmax(dim=1)
 
     def forward(self, x):
-        print(x.size())
+        #print(x.size())
         x = smart_resize(x, 224)
-        print(x.size())
+        #print(x.size())
         batch_size, c, nb_frames, h, w = x.size()
-        print(nb_frames)
+        #print(nb_frames)
         # Ensure that the input tensor has the correct shape [batch_size, nb_frames, 3, h, w]
         x = x.view(batch_size, nb_frames, 3, h, w)
-        print(nb_frames)
+        #print(nb_frames)
         # Pass each frame through ResNet50
         y = []
         for i in range(nb_frames):
             frame = x[:, i, :, :, :]
-            print(frame.size())
+            #print(frame.size())
             resnet_output = self.auto_encoder.layer4(self.auto_encoder.layer3(self.auto_encoder.layer2(self.auto_encoder.layer1(self.auto_encoder.maxpool(self.auto_encoder.relu(self.auto_encoder.bn1(self.auto_encoder.conv1(frame))))))))
             resnet_output = self.pool(resnet_output)
             resnet_output = resnet_output.view(resnet_output.size(0), -1)  # Flatten the output
-            print("ResNet50 output size per frame:", resnet_output.size()) # [batch_size, 2048]
+            #print("ResNet50 output size per frame:", resnet_output.size()) # [batch_size, 2048]
             y.append(resnet_output)
         
         # Convert list of tensors to a tensor
         
         y = torch.stack(y, dim=1)
-        print(y.size())
+        #print(y.size())
         # Pass the output through LSTM
         lstm_output, (hn, cn) = self.lstm(y)
-        print(lstm_output.size())
+        #print(lstm_output.size())
         # Flatten the output for the dense layers
         lstm_output = lstm_output.contiguous().view(batch_size, -1)
-        print(lstm_output.size())
+        #print(lstm_output.size())
         # Pass the output through the dense layers
         y = self.relu(self.dense1(lstm_output))
         y = self.relu(self.dense2(y))
@@ -303,7 +303,7 @@ loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
 
 print("Training...")
 for epoch in range(epochs):
-    print(epoch)
+    print('EPOCH', epoch)
     for sample in tqdm(loader):
         #print('tfytuy')
         optimizer.zero_grad()
