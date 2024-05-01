@@ -229,12 +229,14 @@ class DeepfakeDetector(nn.Module):
         # Freeze the parameters of ResNet50
         for param in self.auto_encoder.parameters():
             param.requires_grad = False
-        
+        nhidden = 50
         # LSTM layer
-        self.lstm = nn.LSTM(input_size=100352, hidden_size=50, num_layers=1, batch_first=True)
-        
+        self.lstm = nn.LSTM(input_size=100352, hidden_size=nhidden, num_layers=1, batch_first=True)
+
+        #Pooling layer
+        self.pool = nn.AdaptiveAvgPool2d((1,1))
         # Dense layers
-        self.dense1 = nn.Linear(nb_frames*50, 512)
+        self.dense1 = nn.Linear(nb_frames*nhidden, 512)
         self.dense2 = nn.Linear(512, 128)
         self.dense3 = nn.Linear(128, 2)
         # Sigmoid activation function
@@ -250,7 +252,8 @@ class DeepfakeDetector(nn.Module):
         for i in range(nb_frames):
             frame = x[:, i, :, :, :]
             resnet_output = self.auto_encoder.layer4(self.auto_encoder.layer3(self.auto_encoder.layer2(self.auto_encoder.layer1(self.auto_encoder.maxpool(self.auto_encoder.relu(self.auto_encoder.bn1(self.auto_encoder.conv1(frame))))))))
-            resnet_output = resnet_output.view(batch_size, -1)  # Flatten the output
+            resnet_output = self.pool(resnet_output)
+            resnet_output = resnet_output.view(resnet_output.size(0), -1)  # Flatten the output
             print("ResNet50 output size per frame:", resnet_output.size())
             y.append(resnet_output)
         
