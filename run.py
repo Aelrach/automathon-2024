@@ -248,11 +248,14 @@ class DeepfakeDetector(nn.Module):
         x = smart_resize(x, 224)
         print(x.size())
         batch_size, c, nb_frames, h, w = x.size()
+
+        # Ensure that the input tensor has the correct shape [batch_size, nb_frames, 3, h, w]
+        x = x.view(batch_size, nb_frames, 3, h, w)
         
         # Pass each frame through ResNet50
         y = []
         for i in range(nb_frames):
-            frame = x[:, :, i, :, :]
+            frame = x[:, i, :, :, :]
             print(frame.size())
             resnet_output = self.auto_encoder.layer4(self.auto_encoder.layer3(self.auto_encoder.layer2(self.auto_encoder.layer1(self.auto_encoder.maxpool(self.auto_encoder.relu(self.auto_encoder.bn1(self.auto_encoder.conv1(frame))))))))
             resnet_output = self.pool(resnet_output)
