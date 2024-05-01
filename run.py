@@ -261,7 +261,7 @@ class DeepfakeDetector(nn.Module):
         
         # Convert list of tensors to a tensor
         y = torch.stack(y, dim=1)
-        
+        print(y.size())
         # Pass the output through LSTM
         lstm_output, (hn, cn) = self.lstm(y)
         print(lstm_output.size())
