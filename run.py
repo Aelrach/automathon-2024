@@ -270,10 +270,10 @@ class DeepfakeDetector(nn.Module):
 
 # LOGGING
 
-wandb.login(key="a446d513570a79c857317c3000584c5f6d6224f0")
+wandb.login(key="9e2a17929563c76f31c391b31cfe24bb9dfbc668")
 
 run = wandb.init(
-    project="automathon"
+    project="automathon-AgrIAculteurs"
 )
 
 # ENTRAINEMENT
