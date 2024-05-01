@@ -231,7 +231,7 @@ class DeepfakeDetector(nn.Module):
             param.requires_grad = False
         
         # LSTM layer
-        self.lstm = nn.LSTM(input_size=25088, hidden_size=256, num_layers=1, batch_first=True)
+        self.lstm = nn.LSTM(input_size=2048, hidden_size=256, num_layers=1, batch_first=True)
         
         # Dense layers
         self.dense1 = nn.Linear(nb_frames*256, 512)
