@@ -291,7 +291,9 @@ loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
 
 print("Training...")
 for epoch in range(epochs):
+    print(epoch)
     for sample in tqdm(loader):
+        print('tfytuy')
         optimizer.zero_grad()
         X, label, ID = sample
         X = X.to(device)
