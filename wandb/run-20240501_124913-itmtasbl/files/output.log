@@ -1,0 +1,8 @@
+/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:118: UserWarning: CUDA initialization: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero. (Triggered internally at ../c10/cuda/CUDAFunctions.cpp:108.)
+  return torch._C._cuda_getDeviceCount() > 0
+Traceback (most recent call last):
+  File "/raid/home/automathon_2024/account6/automathon-2024/run.py", line 285, in <module>
+    model = DeepfakeDetector().to(device)
+  File "/raid/home/automathon_2024/account6/automathon-2024/run.py", line 228, in __init__
+    self.auto_encoder = torchvision.models.vgg19_bn(weights=VGG19_BN_Weights, pretrained=True, progress=True)
+NameError: name 'VGG19_BN_Weights' is not defined

@@ -1,0 +1,32 @@
+/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:118: UserWarning: CUDA initialization: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero. (Triggered internally at ../c10/cuda/CUDAFunctions.cpp:108.)
+  return torch._C._cuda_getDeviceCount() > 0
+Traceback (most recent call last):
+  File "/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torchinfo/torchinfo.py", line 295, in forward_pass
+    _ = model(*x, **kwargs)
+  File "/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1582, in _call_impl
+    result = forward_call(*args, **kwargs)
+  File "/raid/home/automathon_2024/account6/automathon-2024/run.py", line 256, in forward
+    resnet_output = self.auto_encoder.layer4(self.auto_encoder.layer3(self.auto_encoder.layer2(self.auto_encoder.layer1(self.auto_encoder.maxpool(self.auto_encoder.relu(self.auto_encoder.bn1(self.auto_encoder.conv1(frame))))))))
+  File "/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1582, in _call_impl
+    result = forward_call(*args, **kwargs)
+  File "/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torch/nn/modules/conv.py", line 460, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torch/nn/modules/conv.py", line 456, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+RuntimeError: Given groups=1, weight of size [64, 3, 7, 7], expected input[32, 10, 224, 224] to have 3 channels, but got 10 channels instead
+The above exception was the direct cause of the following exception:
+Traceback (most recent call last):
+  File "/raid/home/automathon_2024/account6/automathon-2024/run.py", line 293, in <module>
+    summary(model, input_size=(batch_size, 3, 10, 256, 256))
+  File "/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torchinfo/torchinfo.py", line 223, in summary
+    summary_list = forward_pass(
+  File "/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torchinfo/torchinfo.py", line 304, in forward_pass
+    raise RuntimeError(
+RuntimeError: Failed to run torchinfo. See above stack traces for more details. Executed layers up to: []
+Training model:
+torch.Size([32, 3, 10, 256, 256])
+torch.Size([32, 3, 10, 224, 224])

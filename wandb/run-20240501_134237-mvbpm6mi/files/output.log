@@ -1,0 +1,107 @@
+/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:118: UserWarning: CUDA initialization: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero. (Triggered internally at ../c10/cuda/CUDAFunctions.cpp:108.)
+  return torch._C._cuda_getDeviceCount() > 0
+Training model:
+ResNet50 output size per frame: torch.Size([32, 100352])
+ResNet50 output size per frame: torch.Size([32, 100352])
+ResNet50 output size per frame: torch.Size([32, 100352])
+  0%|                                                                                                                                                   | 0/310 [00:00<?, ?it/s]
+===============================================================================================
+Layer (type:depth-idx)                        Output Shape              Param #
+===============================================================================================
+DeepfakeDetector                              [32, 2]                   --
+├─ResNet: 1-1                                 --                        2,049,000
+│    └─Conv2d: 2-1                            [32, 64, 112, 112]        (9,408)
+│    └─BatchNorm2d: 2-2                       [32, 64, 112, 112]        (128)
+│    └─ReLU: 2-3                              [32, 64, 112, 112]        --
+│    └─MaxPool2d: 2-4                         [32, 64, 56, 56]          --
+│    └─Sequential: 2-5                        [32, 256, 56, 56]         --
+│    │    └─Bottleneck: 3-1                   [32, 256, 56, 56]         (75,008)
+│    │    └─Bottleneck: 3-2                   [32, 256, 56, 56]         (70,400)
+│    │    └─Bottleneck: 3-3                   [32, 256, 56, 56]         (70,400)
+│    └─Sequential: 2-6                        [32, 512, 28, 28]         --
+│    │    └─Bottleneck: 3-4                   [32, 512, 28, 28]         (379,392)
+│    │    └─Bottleneck: 3-5                   [32, 512, 28, 28]         (280,064)
+│    │    └─Bottleneck: 3-6                   [32, 512, 28, 28]         (280,064)
+│    │    └─Bottleneck: 3-7                   [32, 512, 28, 28]         (280,064)
+│    └─Sequential: 2-7                        [32, 1024, 14, 14]        --
+│    │    └─Bottleneck: 3-8                   [32, 1024, 14, 14]        (1,512,448)
+│    │    └─Bottleneck: 3-9                   [32, 1024, 14, 14]        (1,117,184)
+│    │    └─Bottleneck: 3-10                  [32, 1024, 14, 14]        (1,117,184)
+│    │    └─Bottleneck: 3-11                  [32, 1024, 14, 14]        (1,117,184)
+│    │    └─Bottleneck: 3-12                  [32, 1024, 14, 14]        (1,117,184)
+│    │    └─Bottleneck: 3-13                  [32, 1024, 14, 14]        (1,117,184)
+│    └─Sequential: 2-8                        [32, 2048, 7, 7]          --
+│    │    └─Bottleneck: 3-14                  [32, 2048, 7, 7]          (6,039,552)
+│    │    └─Bottleneck: 3-15                  [32, 2048, 7, 7]          (4,462,592)
+│    │    └─Bottleneck: 3-16                  [32, 2048, 7, 7]          (4,462,592)
+│    └─Conv2d: 2-9                            [32, 64, 112, 112]        (recursive)
+│    └─BatchNorm2d: 2-10                      [32, 64, 112, 112]        (recursive)
+│    └─ReLU: 2-11                             [32, 64, 112, 112]        --
+│    └─MaxPool2d: 2-12                        [32, 64, 56, 56]          --
+│    └─Sequential: 2-13                       [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-17                  [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-18                  [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-19                  [32, 256, 56, 56]         (recursive)
+│    └─Sequential: 2-14                       [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-20                  [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-21                  [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-22                  [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-23                  [32, 512, 28, 28]         (recursive)
+│    └─Sequential: 2-15                       [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-24                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-25                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-26                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-27                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-28                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-29                  [32, 1024, 14, 14]        (recursive)
+│    └─Sequential: 2-16                       [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-30                  [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-31                  [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-32                  [32, 2048, 7, 7]          (recursive)
+│    └─Conv2d: 2-17                           [32, 64, 112, 112]        (recursive)
+│    └─BatchNorm2d: 2-18                      [32, 64, 112, 112]        (recursive)
+│    └─ReLU: 2-19                             [32, 64, 112, 112]        --
+│    └─MaxPool2d: 2-20                        [32, 64, 56, 56]          --
+│    └─Sequential: 2-21                       [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-33                  [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-34                  [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-35                  [32, 256, 56, 56]         (recursive)
+│    └─Sequential: 2-22                       [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-36                  [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-37                  [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-38                  [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-39                  [32, 512, 28, 28]         (recursive)
+│    └─Sequential: 2-23                       [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-40                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-41                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-42                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-43                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-44                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-45                  [32, 1024, 14, 14]        (recursive)
+│    └─Sequential: 2-24                       [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-46                  [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-47                  [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-48                  [32, 2048, 7, 7]          (recursive)
+├─LSTM: 1-2                                   [32, 3, 256]              103,024,640
+├─Linear: 1-3                                 [32, 512]                 393,728
+├─ReLU: 1-4                                   [32, 512]                 --
+├─Linear: 1-5                                 [32, 128]                 65,664
+├─ReLU: 1-6                                   [32, 128]                 --
+├─Linear: 1-7                                 [32, 2]                   258
+├─ReLU: 1-8                                   [32, 2]                   --
+├─Softmax: 1-9                                [32, 2]                   --
+===============================================================================================
+Total params: 129,041,322
+Trainable params: 103,484,290
+Non-trainable params: 25,557,032
+Total mult-adds (G): 402.28
+===============================================================================================
+Input size (MB): 75.50
+Forward/backward pass size (MB): 17071.44
+Params size (MB): 507.97
+Estimated Total Size (MB): 17654.91
+===============================================================================================
+Training...
+0
+ResNet50 output size per frame: torch.Size([32, 100352])
+ResNet50 output size per frame: torch.Size([32, 100352])

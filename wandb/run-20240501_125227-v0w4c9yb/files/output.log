@@ -1,0 +1,16 @@
+/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:118: UserWarning: CUDA initialization: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero. (Triggered internally at ../c10/cuda/CUDAFunctions.cpp:108.)
+  return torch._C._cuda_getDeviceCount() > 0
+Traceback (most recent call last):
+  File "/raid/home/automathon_2024/account6/automathon-2024/run.py", line 285, in <module>
+    model = DeepfakeDetector().to(device)
+  File "/raid/home/automathon_2024/account6/automathon-2024/run.py", line 228, in __init__
+    self.auto_encoder = torchvision.models.vgg19_bn(weights='IMAGENET1K_V1', pretrained=True, progress=True)
+  File "/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torchvision/models/_utils.py", line 142, in wrapper
+    return fn(*args, **kwargs)
+  File "/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torchvision/models/_utils.py", line 228, in inner_wrapper
+    return builder(*args, **kwargs)
+  File "/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torchvision/models/vgg.py", line 511, in vgg19_bn
+    return _vgg("E", True, weights, progress, **kwargs)
+  File "/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torchvision/models/vgg.py", line 103, in _vgg
+    model = VGG(make_layers(cfgs[cfg], batch_norm=batch_norm), **kwargs)
+TypeError: VGG.__init__() got an unexpected keyword argument 'pretrained'

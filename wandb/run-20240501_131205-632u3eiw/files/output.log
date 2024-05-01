@@ -1,0 +1,26 @@
+/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:118: UserWarning: CUDA initialization: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero. (Triggered internally at ../c10/cuda/CUDAFunctions.cpp:108.)
+  return torch._C._cuda_getDeviceCount() > 0
+Downloading: "https://download.pytorch.org/models/resnet50-0676ba61.pth" to /raid/home/automathon_2024/account6/.cache/torch/hub/checkpoints/resnet50-0676ba61.pth
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 97.8M/97.8M [00:00<00:00, 116MB/s]
+Traceback (most recent call last):
+  File "/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torchinfo/torchinfo.py", line 295, in forward_pass
+    _ = model(*x, **kwargs)
+  File "/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1582, in _call_impl
+    result = forward_call(*args, **kwargs)
+  File "/raid/home/automathon_2024/account6/automathon-2024/run.py", line 252, in forward
+    vgg_output = self.auto_encoder.features(frame)
+  File "/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1709, in __getattr__
+    raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
+AttributeError: 'ResNet' object has no attribute 'features'
+The above exception was the direct cause of the following exception:
+Traceback (most recent call last):
+  File "/raid/home/automathon_2024/account6/automathon-2024/run.py", line 287, in <module>
+    summary(model, input_size=(batch_size, 3, 3, 256, 256))
+  File "/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torchinfo/torchinfo.py", line 223, in summary
+    summary_list = forward_pass(
+  File "/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torchinfo/torchinfo.py", line 304, in forward_pass
+    raise RuntimeError(
+RuntimeError: Failed to run torchinfo. See above stack traces for more details. Executed layers up to: []
+Training model:

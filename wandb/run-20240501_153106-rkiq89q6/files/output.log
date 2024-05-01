@@ -1,0 +1,128 @@
+/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:118: UserWarning: CUDA initialization: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero. (Triggered internally at ../c10/cuda/CUDAFunctions.cpp:108.)
+  return torch._C._cuda_getDeviceCount() > 0
+Training model:
+ResNet50 output size per frame: torch.Size([32, 100352])
+ResNet50 output size per frame: torch.Size([32, 100352])
+ResNet50 output size per frame: torch.Size([32, 100352])
+===============================================================================================
+Layer (type:depth-idx)                        Output Shape              Param #
+===============================================================================================
+DeepfakeDetector                              [32, 2]                   --
+├─ResNet: 1-1                                 --                        2,049,000
+│    └─Conv2d: 2-1                            [32, 64, 112, 112]        (9,408)
+│    └─BatchNorm2d: 2-2                       [32, 64, 112, 112]        (128)
+│    └─ReLU: 2-3                              [32, 64, 112, 112]        --
+│    └─MaxPool2d: 2-4                         [32, 64, 56, 56]          --
+│    └─Sequential: 2-5                        [32, 256, 56, 56]         --
+│    │    └─Bottleneck: 3-1                   [32, 256, 56, 56]         (75,008)
+│    │    └─Bottleneck: 3-2                   [32, 256, 56, 56]         (70,400)
+│    │    └─Bottleneck: 3-3                   [32, 256, 56, 56]         (70,400)
+│    └─Sequential: 2-6                        [32, 512, 28, 28]         --
+│    │    └─Bottleneck: 3-4                   [32, 512, 28, 28]         (379,392)
+│    │    └─Bottleneck: 3-5                   [32, 512, 28, 28]         (280,064)
+│    │    └─Bottleneck: 3-6                   [32, 512, 28, 28]         (280,064)
+│    │    └─Bottleneck: 3-7                   [32, 512, 28, 28]         (280,064)
+│    └─Sequential: 2-7                        [32, 1024, 14, 14]        --
+│    │    └─Bottleneck: 3-8                   [32, 1024, 14, 14]        (1,512,448)
+│    │    └─Bottleneck: 3-9                   [32, 1024, 14, 14]        (1,117,184)
+│    │    └─Bottleneck: 3-10                  [32, 1024, 14, 14]        (1,117,184)
+│    │    └─Bottleneck: 3-11                  [32, 1024, 14, 14]        (1,117,184)
+│    │    └─Bottleneck: 3-12                  [32, 1024, 14, 14]        (1,117,184)
+│    │    └─Bottleneck: 3-13                  [32, 1024, 14, 14]        (1,117,184)
+│    └─Sequential: 2-8                        [32, 2048, 7, 7]          --
+│    │    └─Bottleneck: 3-14                  [32, 2048, 7, 7]          (6,039,552)
+│    │    └─Bottleneck: 3-15                  [32, 2048, 7, 7]          (4,462,592)
+│    │    └─Bottleneck: 3-16                  [32, 2048, 7, 7]          (4,462,592)
+│    └─Conv2d: 2-9                            [32, 64, 112, 112]        (recursive)
+│    └─BatchNorm2d: 2-10                      [32, 64, 112, 112]        (recursive)
+│    └─ReLU: 2-11                             [32, 64, 112, 112]        --
+│    └─MaxPool2d: 2-12                        [32, 64, 56, 56]          --
+│    └─Sequential: 2-13                       [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-17                  [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-18                  [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-19                  [32, 256, 56, 56]         (recursive)
+│    └─Sequential: 2-14                       [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-20                  [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-21                  [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-22                  [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-23                  [32, 512, 28, 28]         (recursive)
+│    └─Sequential: 2-15                       [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-24                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-25                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-26                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-27                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-28                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-29                  [32, 1024, 14, 14]        (recursive)
+│    └─Sequential: 2-16                       [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-30                  [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-31                  [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-32                  [32, 2048, 7, 7]          (recursive)
+│    └─Conv2d: 2-17                           [32, 64, 112, 112]        (recursive)
+│    └─BatchNorm2d: 2-18                      [32, 64, 112, 112]        (recursive)
+│    └─ReLU: 2-19                             [32, 64, 112, 112]        --
+│    └─MaxPool2d: 2-20                        [32, 64, 56, 56]          --
+│    └─Sequential: 2-21                       [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-33                  [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-34                  [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-35                  [32, 256, 56, 56]         (recursive)
+│    └─Sequential: 2-22                       [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-36                  [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-37                  [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-38                  [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-39                  [32, 512, 28, 28]         (recursive)
+│    └─Sequential: 2-23                       [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-40                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-41                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-42                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-43                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-44                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-45                  [32, 1024, 14, 14]        (recursive)
+│    └─Sequential: 2-24                       [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-46                  [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-47                  [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-48                  [32, 2048, 7, 7]          (recursive)
+├─LSTM: 1-2                                   [32, 3, 50]               20,080,800
+├─Linear: 1-3                                 [32, 512]                 77,312
+├─ReLU: 1-4                                   [32, 512]                 --
+├─Linear: 1-5                                 [32, 128]                 65,664
+├─ReLU: 1-6                                   [32, 128]                 --
+├─Linear: 1-7                                 [32, 2]                   258
+├─ReLU: 1-8                                   [32, 2]                   --
+├─Softmax: 1-9                                [32, 2]                   --
+===============================================================================================
+Total params: 45,781,066
+Trainable params: 20,224,034
+Non-trainable params: 25,557,032
+Total mult-adds (G): 394.30
+===============================================================================================
+Input size (MB): 75.50
+Forward/backward pass size (MB): 17071.28
+Params size (MB): 174.93
+Estimated Total Size (MB): 17321.71
+===============================================================================================
+Training...
+0
+  0%|                                                                                                                                                   | 0/310 [00:00<?, ?it/s]
+ResNet50 output size per frame: torch.Size([32, 100352])
+ResNet50 output size per frame: torch.Size([32, 100352])
+ResNet50 output size per frame: torch.Size([32, 100352])
+ResNet50 output size per frame: torch.Size([32, 100352])
+  0%|                                                                                                                                                   | 0/310 [01:46<?, ?it/s]
+Traceback (most recent call last):
+  File "/raid/home/automathon_2024/account6/automathon-2024/run.py", line 303, in <module>
+    label_pred = model(X)
+  File "/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/raid/home/automathon_2024/account6/automathon-2024/run.py", line 252, in forward
+    resnet_output = self.auto_encoder.layer4(self.auto_encoder.layer3(self.auto_encoder.layer2(self.auto_encoder.layer1(self.auto_encoder.maxpool(self.auto_encoder.relu(self.auto_encoder.bn1(self.auto_encoder.conv1(frame))))))))
+  File "/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torch/nn/modules/conv.py", line 460, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torch/nn/modules/conv.py", line 456, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+KeyboardInterrupt

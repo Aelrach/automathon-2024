@@ -1,0 +1,326 @@
+/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:118: UserWarning: CUDA initialization: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero. (Triggered internally at ../c10/cuda/CUDAFunctions.cpp:108.)
+  return torch._C._cuda_getDeviceCount() > 0
+Training model:
+torch.Size([32, 3, 10, 256, 256])
+torch.Size([32, 3, 10, 224, 224])
+torch.Size([32, 3, 224, 224])
+ResNet50 output size per frame: torch.Size([32, 2048])
+torch.Size([32, 3, 224, 224])
+ResNet50 output size per frame: torch.Size([32, 2048])
+torch.Size([32, 3, 224, 224])
+ResNet50 output size per frame: torch.Size([32, 2048])
+torch.Size([32, 3, 224, 224])
+ResNet50 output size per frame: torch.Size([32, 2048])
+torch.Size([32, 3, 224, 224])
+ResNet50 output size per frame: torch.Size([32, 2048])
+torch.Size([32, 3, 224, 224])
+ResNet50 output size per frame: torch.Size([32, 2048])
+torch.Size([32, 3, 224, 224])
+ResNet50 output size per frame: torch.Size([32, 2048])
+torch.Size([32, 3, 224, 224])
+ResNet50 output size per frame: torch.Size([32, 2048])
+torch.Size([32, 3, 224, 224])
+  0%|                                                                                                                                                   | 0/310 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/raid/home/automathon_2024/account6/automathon-2024/run.py", line 313, in <module>
+    label_pred = model(X)
+  File "/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/raid/home/automathon_2024/account6/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/raid/home/automathon_2024/account6/automathon-2024/run.py", line 253, in forward
+    x = x.view(batch_size, nb_frames, 3, h, w)
+RuntimeError: shape '[32, 3, 3, 224, 224]' is invalid for input of size 48168960
+ResNet50 output size per frame: torch.Size([32, 2048])
+torch.Size([32, 3, 224, 224])
+ResNet50 output size per frame: torch.Size([32, 2048])
+torch.Size([32, 10, 2048])
+torch.Size([32, 10, 50])
+torch.Size([32, 500])
+===============================================================================================
+Layer (type:depth-idx)                        Output Shape              Param #
+===============================================================================================
+DeepfakeDetector                              [32, 2]                   2,049,000
+├─ResNet: 1-19                                --                        (recursive)
+│    └─Conv2d: 2-1                            [32, 64, 112, 112]        (9,408)
+│    └─BatchNorm2d: 2-2                       [32, 64, 112, 112]        (128)
+│    └─ReLU: 2-3                              [32, 64, 112, 112]        --
+│    └─MaxPool2d: 2-4                         [32, 64, 56, 56]          --
+│    └─Sequential: 2-5                        [32, 256, 56, 56]         --
+│    │    └─Bottleneck: 3-1                   [32, 256, 56, 56]         (75,008)
+│    │    └─Bottleneck: 3-2                   [32, 256, 56, 56]         (70,400)
+│    │    └─Bottleneck: 3-3                   [32, 256, 56, 56]         (70,400)
+│    └─Sequential: 2-6                        [32, 512, 28, 28]         --
+│    │    └─Bottleneck: 3-4                   [32, 512, 28, 28]         (379,392)
+│    │    └─Bottleneck: 3-5                   [32, 512, 28, 28]         (280,064)
+│    │    └─Bottleneck: 3-6                   [32, 512, 28, 28]         (280,064)
+│    │    └─Bottleneck: 3-7                   [32, 512, 28, 28]         (280,064)
+│    └─Sequential: 2-7                        [32, 1024, 14, 14]        --
+│    │    └─Bottleneck: 3-8                   [32, 1024, 14, 14]        (1,512,448)
+│    │    └─Bottleneck: 3-9                   [32, 1024, 14, 14]        (1,117,184)
+│    │    └─Bottleneck: 3-10                  [32, 1024, 14, 14]        (1,117,184)
+│    │    └─Bottleneck: 3-11                  [32, 1024, 14, 14]        (1,117,184)
+│    │    └─Bottleneck: 3-12                  [32, 1024, 14, 14]        (1,117,184)
+│    │    └─Bottleneck: 3-13                  [32, 1024, 14, 14]        (1,117,184)
+│    └─Sequential: 2-8                        [32, 2048, 7, 7]          --
+│    │    └─Bottleneck: 3-14                  [32, 2048, 7, 7]          (6,039,552)
+│    │    └─Bottleneck: 3-15                  [32, 2048, 7, 7]          (4,462,592)
+│    │    └─Bottleneck: 3-16                  [32, 2048, 7, 7]          (4,462,592)
+├─AdaptiveAvgPool2d: 1-2                      [32, 2048, 1, 1]          --
+├─ResNet: 1-19                                --                        (recursive)
+│    └─Conv2d: 2-9                            [32, 64, 112, 112]        (recursive)
+│    └─BatchNorm2d: 2-10                      [32, 64, 112, 112]        (recursive)
+│    └─ReLU: 2-11                             [32, 64, 112, 112]        --
+│    └─MaxPool2d: 2-12                        [32, 64, 56, 56]          --
+│    └─Sequential: 2-13                       [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-17                  [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-18                  [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-19                  [32, 256, 56, 56]         (recursive)
+│    └─Sequential: 2-14                       [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-20                  [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-21                  [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-22                  [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-23                  [32, 512, 28, 28]         (recursive)
+│    └─Sequential: 2-15                       [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-24                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-25                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-26                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-27                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-28                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-29                  [32, 1024, 14, 14]        (recursive)
+│    └─Sequential: 2-16                       [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-30                  [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-31                  [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-32                  [32, 2048, 7, 7]          (recursive)
+├─AdaptiveAvgPool2d: 1-4                      [32, 2048, 1, 1]          --
+├─ResNet: 1-19                                --                        (recursive)
+│    └─Conv2d: 2-17                           [32, 64, 112, 112]        (recursive)
+│    └─BatchNorm2d: 2-18                      [32, 64, 112, 112]        (recursive)
+│    └─ReLU: 2-19                             [32, 64, 112, 112]        --
+│    └─MaxPool2d: 2-20                        [32, 64, 56, 56]          --
+│    └─Sequential: 2-21                       [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-33                  [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-34                  [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-35                  [32, 256, 56, 56]         (recursive)
+│    └─Sequential: 2-22                       [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-36                  [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-37                  [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-38                  [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-39                  [32, 512, 28, 28]         (recursive)
+│    └─Sequential: 2-23                       [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-40                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-41                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-42                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-43                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-44                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-45                  [32, 1024, 14, 14]        (recursive)
+│    └─Sequential: 2-24                       [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-46                  [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-47                  [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-48                  [32, 2048, 7, 7]          (recursive)
+├─AdaptiveAvgPool2d: 1-6                      [32, 2048, 1, 1]          --
+├─ResNet: 1-19                                --                        (recursive)
+│    └─Conv2d: 2-25                           [32, 64, 112, 112]        (recursive)
+│    └─BatchNorm2d: 2-26                      [32, 64, 112, 112]        (recursive)
+│    └─ReLU: 2-27                             [32, 64, 112, 112]        --
+│    └─MaxPool2d: 2-28                        [32, 64, 56, 56]          --
+│    └─Sequential: 2-29                       [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-49                  [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-50                  [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-51                  [32, 256, 56, 56]         (recursive)
+│    └─Sequential: 2-30                       [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-52                  [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-53                  [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-54                  [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-55                  [32, 512, 28, 28]         (recursive)
+│    └─Sequential: 2-31                       [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-56                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-57                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-58                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-59                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-60                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-61                  [32, 1024, 14, 14]        (recursive)
+│    └─Sequential: 2-32                       [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-62                  [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-63                  [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-64                  [32, 2048, 7, 7]          (recursive)
+├─AdaptiveAvgPool2d: 1-8                      [32, 2048, 1, 1]          --
+├─ResNet: 1-19                                --                        (recursive)
+│    └─Conv2d: 2-33                           [32, 64, 112, 112]        (recursive)
+│    └─BatchNorm2d: 2-34                      [32, 64, 112, 112]        (recursive)
+│    └─ReLU: 2-35                             [32, 64, 112, 112]        --
+│    └─MaxPool2d: 2-36                        [32, 64, 56, 56]          --
+│    └─Sequential: 2-37                       [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-65                  [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-66                  [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-67                  [32, 256, 56, 56]         (recursive)
+│    └─Sequential: 2-38                       [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-68                  [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-69                  [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-70                  [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-71                  [32, 512, 28, 28]         (recursive)
+│    └─Sequential: 2-39                       [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-72                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-73                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-74                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-75                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-76                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-77                  [32, 1024, 14, 14]        (recursive)
+│    └─Sequential: 2-40                       [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-78                  [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-79                  [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-80                  [32, 2048, 7, 7]          (recursive)
+├─AdaptiveAvgPool2d: 1-10                     [32, 2048, 1, 1]          --
+├─ResNet: 1-19                                --                        (recursive)
+│    └─Conv2d: 2-41                           [32, 64, 112, 112]        (recursive)
+│    └─BatchNorm2d: 2-42                      [32, 64, 112, 112]        (recursive)
+│    └─ReLU: 2-43                             [32, 64, 112, 112]        --
+│    └─MaxPool2d: 2-44                        [32, 64, 56, 56]          --
+│    └─Sequential: 2-45                       [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-81                  [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-82                  [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-83                  [32, 256, 56, 56]         (recursive)
+│    └─Sequential: 2-46                       [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-84                  [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-85                  [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-86                  [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-87                  [32, 512, 28, 28]         (recursive)
+│    └─Sequential: 2-47                       [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-88                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-89                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-90                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-91                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-92                  [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-93                  [32, 1024, 14, 14]        (recursive)
+│    └─Sequential: 2-48                       [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-94                  [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-95                  [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-96                  [32, 2048, 7, 7]          (recursive)
+├─AdaptiveAvgPool2d: 1-12                     [32, 2048, 1, 1]          --
+├─ResNet: 1-19                                --                        (recursive)
+│    └─Conv2d: 2-49                           [32, 64, 112, 112]        (recursive)
+│    └─BatchNorm2d: 2-50                      [32, 64, 112, 112]        (recursive)
+│    └─ReLU: 2-51                             [32, 64, 112, 112]        --
+│    └─MaxPool2d: 2-52                        [32, 64, 56, 56]          --
+│    └─Sequential: 2-53                       [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-97                  [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-98                  [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-99                  [32, 256, 56, 56]         (recursive)
+│    └─Sequential: 2-54                       [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-100                 [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-101                 [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-102                 [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-103                 [32, 512, 28, 28]         (recursive)
+│    └─Sequential: 2-55                       [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-104                 [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-105                 [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-106                 [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-107                 [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-108                 [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-109                 [32, 1024, 14, 14]        (recursive)
+│    └─Sequential: 2-56                       [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-110                 [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-111                 [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-112                 [32, 2048, 7, 7]          (recursive)
+├─AdaptiveAvgPool2d: 1-14                     [32, 2048, 1, 1]          --
+├─ResNet: 1-19                                --                        (recursive)
+│    └─Conv2d: 2-57                           [32, 64, 112, 112]        (recursive)
+│    └─BatchNorm2d: 2-58                      [32, 64, 112, 112]        (recursive)
+│    └─ReLU: 2-59                             [32, 64, 112, 112]        --
+│    └─MaxPool2d: 2-60                        [32, 64, 56, 56]          --
+│    └─Sequential: 2-61                       [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-113                 [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-114                 [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-115                 [32, 256, 56, 56]         (recursive)
+│    └─Sequential: 2-62                       [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-116                 [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-117                 [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-118                 [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-119                 [32, 512, 28, 28]         (recursive)
+│    └─Sequential: 2-63                       [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-120                 [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-121                 [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-122                 [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-123                 [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-124                 [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-125                 [32, 1024, 14, 14]        (recursive)
+│    └─Sequential: 2-64                       [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-126                 [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-127                 [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-128                 [32, 2048, 7, 7]          (recursive)
+├─AdaptiveAvgPool2d: 1-16                     [32, 2048, 1, 1]          --
+├─ResNet: 1-19                                --                        (recursive)
+│    └─Conv2d: 2-65                           [32, 64, 112, 112]        (recursive)
+│    └─BatchNorm2d: 2-66                      [32, 64, 112, 112]        (recursive)
+│    └─ReLU: 2-67                             [32, 64, 112, 112]        --
+│    └─MaxPool2d: 2-68                        [32, 64, 56, 56]          --
+│    └─Sequential: 2-69                       [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-129                 [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-130                 [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-131                 [32, 256, 56, 56]         (recursive)
+│    └─Sequential: 2-70                       [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-132                 [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-133                 [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-134                 [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-135                 [32, 512, 28, 28]         (recursive)
+│    └─Sequential: 2-71                       [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-136                 [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-137                 [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-138                 [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-139                 [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-140                 [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-141                 [32, 1024, 14, 14]        (recursive)
+│    └─Sequential: 2-72                       [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-142                 [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-143                 [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-144                 [32, 2048, 7, 7]          (recursive)
+├─AdaptiveAvgPool2d: 1-18                     [32, 2048, 1, 1]          --
+├─ResNet: 1-19                                --                        (recursive)
+│    └─Conv2d: 2-73                           [32, 64, 112, 112]        (recursive)
+│    └─BatchNorm2d: 2-74                      [32, 64, 112, 112]        (recursive)
+│    └─ReLU: 2-75                             [32, 64, 112, 112]        --
+│    └─MaxPool2d: 2-76                        [32, 64, 56, 56]          --
+│    └─Sequential: 2-77                       [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-145                 [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-146                 [32, 256, 56, 56]         (recursive)
+│    │    └─Bottleneck: 3-147                 [32, 256, 56, 56]         (recursive)
+│    └─Sequential: 2-78                       [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-148                 [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-149                 [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-150                 [32, 512, 28, 28]         (recursive)
+│    │    └─Bottleneck: 3-151                 [32, 512, 28, 28]         (recursive)
+│    └─Sequential: 2-79                       [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-152                 [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-153                 [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-154                 [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-155                 [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-156                 [32, 1024, 14, 14]        (recursive)
+│    │    └─Bottleneck: 3-157                 [32, 1024, 14, 14]        (recursive)
+│    └─Sequential: 2-80                       [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-158                 [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-159                 [32, 2048, 7, 7]          (recursive)
+│    │    └─Bottleneck: 3-160                 [32, 2048, 7, 7]          (recursive)
+├─AdaptiveAvgPool2d: 1-20                     [32, 2048, 1, 1]          --
+├─LSTM: 1-21                                  [32, 10, 50]              420,000
+├─Linear: 1-22                                [32, 512]                 256,512
+├─ReLU: 1-23                                  [32, 512]                 --
+├─Linear: 1-24                                [32, 128]                 65,664
+├─ReLU: 1-25                                  [32, 128]                 --
+├─Linear: 1-26                                [32, 2]                   258
+├─ReLU: 1-27                                  [32, 2]                   --
+├─Softmax: 1-28                               [32, 2]                   --
+===============================================================================================
+Total params: 26,299,466
+Trainable params: 742,434
+Non-trainable params: 25,557,032
+Total mult-adds (T): 1.31
+===============================================================================================
+Input size (MB): 251.66
+Forward/backward pass size (MB): 56903.89
+Params size (MB): 97.00
+Estimated Total Size (MB): 57252.55
+===============================================================================================
+Training...
+0
+torch.Size([32, 10, 3, 256, 256])
+torch.Size([32, 10, 3, 224, 224])

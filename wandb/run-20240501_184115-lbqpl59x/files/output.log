@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/raid/home/automathon_2024/account6/automathon-2024/run.py", line 297, in <module>
+    model = DeepfakeDetector().to(device)
+  File "/raid/home/automathon_2024/account6/automathon-2024/run.py", line 228, in __init__
+    self.auto_encoder = torchvision.models.resnet50(weights='IMAGENET1K_V1', progress=True)
+NameError: name 'torchvision' is not defined
