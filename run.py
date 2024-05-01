@@ -295,7 +295,7 @@ print("Training...")
 for epoch in range(epochs):
     print(epoch)
     for sample in tqdm(loader):
-        print('tfytuy')
+        #print('tfytuy')
         optimizer.zero_grad()
         X, label, ID = sample
         X = X.to(device)
