@@ -223,7 +223,7 @@ experimental_dataset = VideoDataset(dataset_dir, dataset_choice="experimental", 
 # MODELE
 
 class DeepfakeDetector(nn.Module):
-    def __init__(self, nb_frames=3):
+    def __init__(self, nb_frames=10):
         super().__init__()
         self.auto_encoder = torchvision.models.resnet50(weights='IMAGENET1K_V1', progress=True)
         # Freeze the parameters of ResNet50
@@ -254,7 +254,7 @@ class DeepfakeDetector(nn.Module):
             resnet_output = self.auto_encoder.layer4(self.auto_encoder.layer3(self.auto_encoder.layer2(self.auto_encoder.layer1(self.auto_encoder.maxpool(self.auto_encoder.relu(self.auto_encoder.bn1(self.auto_encoder.conv1(frame))))))))
             resnet_output = self.pool(resnet_output)
             resnet_output = resnet_output.view(resnet_output.size(0), -1)  # Flatten the output
-            print("ResNet50 output size per frame:", resnet_output.size())
+            print("ResNet50 output size per frame:", resnet_output.size()) # [batch_size, 2048]
             y.append(resnet_output)
         
         # Convert list of tensors to a tensor
@@ -262,10 +262,10 @@ class DeepfakeDetector(nn.Module):
         
         # Pass the output through LSTM
         lstm_output, (hn, cn) = self.lstm(y)
-        
+        print(lstm_output.size())
         # Flatten the output for the dense layers
         lstm_output = lstm_output.contiguous().view(batch_size, -1)
-        
+        print(lstm_output.size())
         # Pass the output through the dense layers
         y = self.relu(self.dense1(lstm_output))
         y = self.relu(self.dense2(y))
