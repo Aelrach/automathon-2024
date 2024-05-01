@@ -226,7 +226,7 @@ class DeepfakeDetector(nn.Module):
     def __init__(self, nb_frames=3):
         super().__init__()
         self.auto_encoder = torchvision.models.resnet50(weights='IMAGENET1K_V1', progress=True)
-        # Freeze the parameters of VGG19_bn
+        # Freeze the parameters of ResNet50
         for param in self.auto_encoder.parameters():
             param.requires_grad = False
         
@@ -245,13 +245,13 @@ class DeepfakeDetector(nn.Module):
         x = smart_resize(x, 224)
         batch_size, nb_frames, c, h, w = x.size()
         
-        # Pass each frame through VGG19_bn
+        # Pass each frame through ResNet50
         y = []
         for i in range(nb_frames):
             frame = x[:, i, :, :, :]
-            vgg_output = self.auto_encoder.features(frame)
-            vgg_output = vgg_output.view(batch_size, -1)  # Flatten the output
-            y.append(vgg_output)
+            resnet_output = model.layer4(model.layer3(model.layer2(model.layer1(model.maxpool(model.relu(model.bn1(model.conv1(frame))))))))
+            resnet_output = resnet_output.view(batch_size, -1)  # Flatten the output
+            y.append(resnet_output)
         
         # Convert list of tensors to a tensor
         y = torch.stack(y, dim=1)
