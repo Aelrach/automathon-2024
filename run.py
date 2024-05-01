@@ -6,6 +6,7 @@ import torch
 import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader
 from torchinfo import summary
+import torchvision
 import torchvision.io as io
 import os
 import json
