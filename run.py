@@ -239,7 +239,7 @@ class DeepfakeDetector(nn.Module):
         # Dense layers
         self.dense1 = nn.Linear(1*nhidden, 128)
         self.dense2 = nn.Linear(128, 128)
-        self.dense3 = nn.Linear(128, 2)
+        self.dense3 = nn.Linear(128, 1)
         # Sigmoid activation function
         self.relu = nn.ReLU()
         self.sigmoid = nn.Sigmoid()
