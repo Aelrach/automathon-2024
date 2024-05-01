@@ -243,16 +243,6 @@ class DeepfakeDetector(nn.Module):
         self.relu = nn.ReLU()
         self.softmax = nn.Softmax(dim=1)
         
-    def FaceCropping(self, x):
-        model_yolo = YOLO('yolov8m-face.pt')
-        predict = model_yolo.predict(x)
-        boxes = predict.boxes
-        for box in boxes :
-            top_left_x = int(box.xyxy.tolist()[0][0])    
-            top_left_y = int(box.xyxy.tolist()[0][1])
-            bottom_right_x = int(box.xyxy.tolist()[0][2])
-            bottom_right_y = int(box.xyxy.tolist()[0][3])
-        
     def forward(self, x):
         #print(x.size())
         x = smart_resize(x, 224)
