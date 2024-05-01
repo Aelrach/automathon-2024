@@ -233,19 +233,21 @@ class DeepfakeDetector(nn.Module):
         
         # Dense layers
         self.dense1 = nn.Linear(nb_frames*256, 512)
-        self.dense2 = nn.Linear(512, 1)
-        
+        self.dense2 = nn.Linear(512, 128)
+        self.dense3 = nn.Linear(128, 2)
         # Sigmoid activation function
-        self.sigmoid = nn.Sigmoid()
+        self.relu = nn.functional.relu()
+        self.softmax = nn.Softmax()
 
     def forward(self, x):
+        x = smart_resize(x, 224)
         batch_size, nb_frames, c, h, w = x.size()
         
         # Pass each frame through VGG19_bn
         y = []
         for i in range(nb_frames):
             frame = x[:, i, :, :, :]
-            vgg_output = self.vgg19_bn.features(frame)
+            vgg_output = self.auto_encoder.features(frame)
             vgg_output = vgg_output.view(batch_size, -1)  # Flatten the output
             y.append(vgg_output)
         
@@ -260,8 +262,11 @@ class DeepfakeDetector(nn.Module):
         
         # Pass the output through the dense layers
         y = self.dense1(lstm_output)
+        y = self.relu(y)
         y = self.dense2(y)
-        y = self.sigmoid(y)
+        y = self.relu(y)
+        y = self.dense3(y)
+        y = self.softmax(y)
         return y
 
 # LOGGING
