@@ -244,7 +244,9 @@ class DeepfakeDetector(nn.Module):
         self.softmax = nn.Softmax(dim=1)
 
     def forward(self, x):
+        print(x.size())
         x = smart_resize(x, 224)
+        print(x.size())
         batch_size, nb_frames, c, h, w = x.size()
         
         # Pass each frame through ResNet50
