@@ -247,7 +247,7 @@ class DeepfakeDetector(nn.Module):
         print(x.size())
         x = smart_resize(x, 224)
         print(x.size())
-        batch_size, nb_frames, c, h, w = x.size()
+        batch_size, c, nb_frames, h, w = x.size()
         
         # Pass each frame through ResNet50
         y = []
@@ -261,7 +261,7 @@ class DeepfakeDetector(nn.Module):
         
         # Convert list of tensors to a tensor
         
-        y = torch.stack(y, dim=2)
+        y = torch.stack(y, dim=1)
         print(y.size())
         # Pass the output through LSTM
         lstm_output, (hn, cn) = self.lstm(y)
