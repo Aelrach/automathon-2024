@@ -309,7 +309,7 @@ for epoch in range(epochs):
         optimizer.zero_grad()
         X, label, ID = sample
         X = X.to(device)
-        batch_size, nb_frames, c, h, w = x.size()
+        batch_size, nb_frames, c, h, w = X.size()
         X = X.view(batch_size, 3, nb_frames, h, w)
         label = label.to(device)
         label_pred = model(X)
