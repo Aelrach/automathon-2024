@@ -234,7 +234,7 @@ class DeepfakeDetector(nn.Module):
         self.lstm = nn.LSTM(input_size=2048, hidden_size=50, num_layers=1, batch_first=True)
         
         # Dense layers
-        self.dense1 = nn.Linear(nb_frames*256, 512)
+        self.dense1 = nn.Linear(nb_frames*50, 512)
         self.dense2 = nn.Linear(512, 128)
         self.dense3 = nn.Linear(128, 2)
         # Sigmoid activation function
