@@ -225,7 +225,7 @@ experimental_dataset = VideoDataset(dataset_dir, dataset_choice="experimental", 
 class DeepfakeDetector(nn.Module):
     def __init__(self, nb_frames=3):
         super().__init__()
-        self.auto_encoder = torchvision.models.vgg19_bn(weights='IMAGENET1K_V1', progress=True)
+        self.auto_encoder = torchvision.models.resnet50(weights='IMAGENET1K_V1', progress=True)
         # Freeze the parameters of VGG19_bn
         for param in self.auto_encoder.parameters():
             param.requires_grad = False
