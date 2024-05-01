@@ -242,7 +242,7 @@ class DeepfakeDetector(nn.Module):
         self.dense3 = nn.Linear(128, 2)
         # Sigmoid activation function
         self.relu = nn.ReLU()
-        self.softmax = nn.Softmax(dim=1)
+        self.sigmoid = nn.Sigmoid()
         
     def forward(self, x):
         #print(x.size())
@@ -285,7 +285,7 @@ class DeepfakeDetector(nn.Module):
         y = self.relu(self.dense1(lstm_output))
         y = self.relu(self.dense2(y))
         y = self.relu(self.dense3(y))
-        y = self.softmax(y)
+        y = self.sigmoid(y)
         return y
 
 # LOGGING
