@@ -229,20 +229,30 @@ class DeepfakeDetector(nn.Module):
         # Freeze the parameters of ResNet50
         for param in self.auto_encoder.parameters():
             param.requires_grad = False
-        nhidden = 50
+        nhidden = 10
         # LSTM layer
         self.lstm = nn.LSTM(input_size=2048, hidden_size=nhidden, num_layers=1, batch_first=True)
 
         #Pooling layer
         self.pool = nn.AdaptiveAvgPool2d((1,1))
         # Dense layers
-        self.dense1 = nn.Linear(nb_frames*nhidden, 512)
-        self.dense2 = nn.Linear(512, 128)
+        self.dense1 = nn.Linear(nb_frames*nhidden, 128)
+        self.dense2 = nn.Linear(128, 128)
         self.dense3 = nn.Linear(128, 2)
         # Sigmoid activation function
         self.relu = nn.ReLU()
         self.softmax = nn.Softmax(dim=1)
-
+        
+    def FaceCropping(self, x):
+        model_yolo = YOLO('yolov8m-face.pt')
+        predict = model_yolo.predict(x)
+        boxes = predict.boxes
+        for box in boxes :
+            top_left_x = int(box.xyxy.tolist()[0][0])    
+            top_left_y = int(box.xyxy.tolist()[0][1])
+            bottom_right_x = int(box.xyxy.tolist()[0][2])
+            bottom_right_y = int(box.xyxy.tolist()[0][3])
+        
     def forward(self, x):
         #print(x.size())
         x = smart_resize(x, 224)
