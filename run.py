@@ -304,7 +304,7 @@ loss_fn = nn.MSELoss()
 model = DeepfakeDetector().to(device)
 print("Training model:")
 summary(model, input_size=(batch_size, 3, 10, 256, 256))
-optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+optimizer = torch.optim.Adam(model.parameters(), lr=0.0001)
 epochs = 5
 loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
 #loader = DataLoader(experimental_dataset, batch_size=2, shuffle=True)
@@ -338,6 +338,8 @@ for sample in tqdm(loader):
     X, ID = sample
     #ID = ID[0]
     X = X.to(device)
+    batch_size, nb_frames, c, h, w = X.size()
+    X = X.view(batch_size, 3, nb_frames, h, w)
     label_pred = model(X)
     ids.extend(list(ID))
     pred = (label_pred > 0.5).long()
