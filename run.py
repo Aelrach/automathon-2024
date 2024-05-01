@@ -249,7 +249,7 @@ class DeepfakeDetector(nn.Module):
         y = []
         for i in range(nb_frames):
             frame = x[:, i, :, :, :]
-            resnet_output = model.layer4(model.layer3(model.layer2(model.layer1(model.maxpool(model.relu(model.bn1(model.conv1(frame))))))))
+            resnet_output = self.auto_encoder.layer4(self.auto_encoder.layer3(self.auto_encoder.layer2(self.auto_encoder.layer1(self.auto_encoder.maxpool(self.auto_encoder.relu(self.auto_encoder.bn1(self.auto_encoder.conv1(frame))))))))
             resnet_output = resnet_output.view(batch_size, -1)  # Flatten the output
             y.append(resnet_output)
         
